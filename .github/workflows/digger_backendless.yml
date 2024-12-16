@@ -23,12 +23,7 @@ jobs:
       issues: write
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Infracost
-        uses: infracost/actions/setup@v2
-        with:
-          api-key: ${{ secrets.INFRACOST_API_KEY }}      
+      - uses: actions/checkout@v4  
 
       - name: digger
         uses: diggerhq/digger@vLatest
@@ -38,8 +33,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           disable-locking: true
-          setup-opentofu: true
-          reporting-strategy: "latest_run_comment"
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
